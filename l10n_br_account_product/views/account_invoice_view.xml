@@ -114,6 +114,12 @@
 					<field name="amount_gross"  widget='monetary' options="{'currency_field': 'currency_id'}"/>
 					<field name="amount_discount" widget='monetary' options="{'currency_field': 'currency_id'}"/>
 				</field>
+				<xpath expr="//field[@name='invoice_line']/tree/field[@name='name']" position="after">
+					<field name="fiscal_document_desc" string="Description"/>
+				</xpath>
+				<xpath expr="//field[@name='invoice_line']/tree/field[@name='name']" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
 				<xpath expr="//field[@name='invoice_line']/tree/field[@name='price_unit']" position="after">
 					<field name="price_gross" />
 				</xpath>
@@ -324,8 +330,9 @@
 										<field name="company_id" groups="base.group_multi_company" readonly="1"/>
 									</group>
 								</group>
-								<label for="name"/>
-									<field name="name"/>
+								<label for="name" invisible="1"/>
+								<field name="name" invisible="1"/>
+								<field name="fiscal_document_desc" nolabel="1" required="1" widget="text"/>
 							</page>
 							<page position="inside" string="Impostos">
 								<group>

@@ -754,6 +754,8 @@ class AccountInvoiceLine(models.Model):
     line_gross_weight = fields.Float(string='Weight', compute='_get_line_weight')
     line_net_weight = fields.Float(string='Weight', compute='_get_line_weight')
     fiscal_comment = fields.Text(u'Observação Fiscal')
+    fiscal_document_desc = fields.Char(related='product_id.fiscal_document_desc', store=True,
+                                       string='Fiscal Document Description')
     
     @api.one
     @api.depends('product_id.weight','quantity','uos_id')
